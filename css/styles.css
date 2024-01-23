@@ -3,6 +3,32 @@ body{
     height: 100vh;
 }
 
+#title{
+    text-align: center;
+}
+
+#changeSizeContainer{
+    display: flex;
+    justify-content: center;
+    gap: 4em;
+}
+
+#btnContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#btnChangeSize{
+    margin: 2em;
+    height: 2em;
+    width: 15em;
+    border-radius: 12px;
+}
+
+.txt{
+    display: inline;
+}
+
 #container, #anotherContainer{
     display: flex;
     justify-content: center;
@@ -20,11 +46,18 @@ body{
     display: flex;
     flex-direction: column;
     width: 70%;
-    height: auto;
+}
+
+.pixelContainer{
+    display: flex;
 }
 
 .pixel{
     display: flex;
     background-color: white;
-    
+    opacity: 0.6;
+}
+
+.pixel:hover{
+    opacity: 1.0;
 }
