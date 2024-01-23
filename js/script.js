@@ -2,8 +2,11 @@ const canvas = document.querySelector("#canvas");
 const canvasWidthInput = document.querySelector("#canvasWidthInput");
 const canvasHeightInput = document.querySelector("#canvasHeightInput");
 const btnChangeSize = document.querySelector("#btnChangeSize");
+const colors = document.querySelectorAll(".colorPicker");
+const colorSelected = document.querySelector("#colorSelected");
 
 let mouseIsPressed = false;
+let currentColor = "black";
 
 document.addEventListener('mousedown', function(){
     mouseIsPressed = true;
@@ -11,6 +14,15 @@ document.addEventListener('mousedown', function(){
 document.addEventListener('mouseup', function(){
     mouseIsPressed = false;
 })
+
+colors.forEach(
+    function(node){
+        node.addEventListener('click', function(e){
+            changeColor(e.target.id);
+        })
+    }
+)
+
 
 createCanvas(16, 16);
 btnChangeSize.addEventListener('click', function(){
@@ -35,10 +47,10 @@ function createCanvas(n, m){
             anotherDiv.style.width = (100 / n) + "%";
             anotherDiv.style.height = "100%";
             anotherDiv.addEventListener('mouseenter', function(e){
-                if(mouseIsPressed){
-                    e.target.style.backgroundColor = "red";
-                    e.target.style.opacity = "1.0";
-                }
+                if(mouseIsPressed) changePixelColor(e);
+            })
+            anotherDiv.addEventListener('click', function(e){
+                changePixelColor(e);
             })
             if((i + j) % 2 != 0){
                 anotherDiv.style.backgroundColor = "gray";
@@ -51,4 +63,14 @@ function createCanvas(n, m){
         }
         canvas.appendChild(div);
     }
+}
+
+function changeColor(color){
+    currentColor = color;
+    colorSelected.style.backgroundColor = color;
+}
+
+function changePixelColor(e){
+    e.target.style.backgroundColor = currentColor;
+    e.target.style.opacity = "1.0";
 }
